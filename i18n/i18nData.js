@@ -11,7 +11,6 @@ extractSheets(
     sheetsToExtract: ['index'],
   },
   (err, data) => {
-    console.log('get',err,data)
     if (err) throw err;
     const i18nData = [...data['index']];
     const result = {};
@@ -31,11 +30,11 @@ extractSheets(
     for (const fileName of files) {
       fs.ensureDirSync(
         path.dirname(
-          path.resolve(__dirname, "./language", `${fileName}.json`)
+          path.resolve(__dirname, "../src/language", `${fileName}.json`)
         )
       );
       fs.writeJSONSync(
-        path.resolve(__dirname, "./language", `${fileName}.json`),
+        path.resolve(__dirname, "../src/language", `${fileName}.json`),
         unflatten(result[fileName], { object: true }),
         { spaces: 2 }
       );
@@ -43,8 +42,3 @@ extractSheets(
   }
 );
 
-
-
-// app.listen(5000, () => {
-//   console.log('server listening on 5000...')
-// })
